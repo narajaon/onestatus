@@ -9,7 +9,7 @@ Much better !
 ![onestatus](https://user-images.githubusercontent.com/26607946/90639803-7f947f00-e22f-11ea-863e-e347f9379dfe.png)
 
 # Usage
-The plugin comes with a prebuilt statusline, like in the screenshot.
+The plugin comes with a prebuilt statusline, as seen in the screenshot.
 To use it, put this amongst your `autocmd`s
 ```
 au WinEnter * OneStatus
