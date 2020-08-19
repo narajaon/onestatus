@@ -1,7 +1,7 @@
 *Disclaimer*: this is still a very early stage project, feel free to submit a PR if you want to contribute
 
 # Motivation
-OneStatus is an interface which enables your (neo)vim to send commands to your tmux.
+OneStatus is an interface which enables your (neo)vim to send commands to your tmux.<br>
 One of my goal with it was to get rid of vim's redundant statusline and instead use tmux's.
 
 Much better !
@@ -9,10 +9,10 @@ Much better !
 ![onestatus](https://user-images.githubusercontent.com/26607946/90639803-7f947f00-e22f-11ea-863e-e347f9379dfe.png)
 
 # Usage
-The plugin comes with a prebuilt statusline, as seen in the screenshot.
+The plugin comes with a prebuilt statusline, as seen in the screenshot.<br>
 You should however note that your current tmux setting may interfere with it.
 
-To use it, put this amongst your `autocmd`s
+To use the default template, put this amongst your `autocmd`s
 ```
 au WinEnter * OneStatus
 ```
@@ -24,7 +24,7 @@ This is how the OneStatus command is implemented.
 command! OneStatus :call onestatus#build([dict1, dict2, dict3, dict4, dict5])
 ```
 
-It calls `onestatus#build` which takes a List of Dictionaries.
+It calls `onestatus#build` which takes a List of Dictionaries.<br>
 The only mandatory attribute of each Dict is a `command` key which has a tmux command as its value.
 ```
 {
