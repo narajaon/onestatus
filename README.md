@@ -8,6 +8,13 @@ Much better !
 
 ![onestatus](https://user-images.githubusercontent.com/26607946/90639803-7f947f00-e22f-11ea-863e-e347f9379dfe.png)
 
+# Requirements
+If you just want to use the default template :
+ - a font that supports powerline
+
+If you want to play with the API :
+ - nothing ! Enjoy
+
 # Usage
 The plugin comes with a prebuilt statusline, as seen in the screenshot.<br>
 You should however note that your current tmux setting may interfere with it.
