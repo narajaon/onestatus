@@ -30,7 +30,7 @@ The only mandatory attribute of each Dict is a `command` key which has a tmux co
    'command': 'set-option -g status-justify centre'
 }
 ```
-If your command updates tmux's colors, OneStatus can parse an `attributes` List of this form
+If your command updates tmux's colors, OneStatus can parse an `attributes` List of this form:
 ```
 {
    'command': 'set-option -g status-left',
@@ -44,6 +44,6 @@ set-option -g status-left #[fg=#6c757d,bg=#fcfcfc]#H
 ```
 
 # TODO
-- write a proper `:h`
+- Write a proper `:h`
 - Add more default templates
 - Improve default template theme integration
