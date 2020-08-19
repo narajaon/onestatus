@@ -14,7 +14,7 @@ To use it, put this amongst your `autocmd`s
 ```
 au WinEnter * OneStatus
 ```
-
+You should however note that your current tmux setting may interfere with it.
 You can of course not use `WintEnter` but I found it sufficient for my use case.
 
 # Customization
