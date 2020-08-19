@@ -1,6 +1,5 @@
 if !exists(':OneStatus*')
-  command! -nargs=+ OneStatus :call onestatus#build(<q-args>)
-  command! OneStatusDefault :call onestatus#build([s:defaultStyle(), s:right(), s:curwin(), s:winlist(), s:left()])
+  command! OneStatus :call onestatus#build([s:defaultStyle(), s:right(), s:curwin(), s:winlist(), s:left()])
 endif
 
 if exists('g:loaded_onestatus')
@@ -9,17 +8,6 @@ endif
 
 let g:loaded_onestatus = 1
 let g:onestatus_default_layout = 1
-
-fun onestatus#build(cmds) abort
-  let s:index = 0
-  while s:index < len(a:cmds)
-    if !has_key(a:cmds[s:index], 'command')
-      echoer 'command attribute missing in object ' . s:index
-    endif
-    let s:index = s:index + 1
-  endwhile
-  call s:apply(s:buildLine(a:cmds))
-endfun
 
 fun s:getFormated()
   return g:cwd_formated
