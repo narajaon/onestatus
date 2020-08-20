@@ -1,7 +1,7 @@
 *Disclaimer*: this is still a very early stage project, feel free to submit a PR if you want to contribute
 
 # Motivation
-OneStatus is an interface which enables your (neo)vim to send commands to your tmux.<br>
+OneStatus is an interface helps you interact with your tmux.<br>
 One of my goal with it was to get rid of vim's redundant statusline and instead use tmux's.
 
 Much better !
