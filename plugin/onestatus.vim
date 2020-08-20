@@ -14,18 +14,18 @@ fun s:getFormated()
 endfun
 
 fun s:getHead()
-  let s:head = FugitiveHead()
-  if (s:head == "")
+  let head = FugitiveHead()
+  if (head == "")
     return ""
   endif
-  return printf("  %s ", s:head)
+  return printf("  %s ", head)
 endfun
 
 fun s:getColor(colSchem, command, isStyleOnly) abort
-  let s:fg = synIDattr(synIDtrans(hlID(a:colSchem)), 'fg#')
-  let s:bg = synIDattr(synIDtrans(hlID(a:colSchem)), 'bg#')
-  let s:attrs = {'isStyleOnly': a:isStyleOnly, 'fg': s:fg, 'bg': s:bg}
-  return { 'command': a:command, 'attributes': [s:attrs]}
+  let fg = synIDattr(synIDtrans(hlID(a:colSchem)), 'fg#')
+  let bg = synIDattr(synIDtrans(hlID(a:colSchem)), 'bg#')
+  let attrs = {'isStyleOnly': a:isStyleOnly, 'fg': fg, 'bg': bg}
+  return { 'command': a:command, 'attributes': [attrs]}
 endfun
 
 " set-option -g status-right
