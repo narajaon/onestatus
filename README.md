@@ -26,7 +26,7 @@ au BufEnter * :OneStatus
 set noshowmode noruler
 set laststatus = 0
 ```
-You can of course not use `BufEnter` but I found it sufficient for my use case.
+You can of course not use `BufEnter` and use `WinEnter` or some other events but I found it sufficient for my use case.
 
 # Customization
 This is how the OneStatus command is implemented.
