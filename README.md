@@ -24,6 +24,7 @@ To use the default template, put this in your config file
 ```
 au BufEnter * :OneStatus
 set noshowmode noruler
+set laststatus = 0
 ```
 You can of course not use `BufEnter` but I found it sufficient for my use case.
 
