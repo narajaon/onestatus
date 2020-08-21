@@ -11,6 +11,7 @@ Much better !
 # Requirements
 If you just want to use the default template :
  - a font that supports powerline
+ - https://github.com/tpope/vim-fugitive installed
 
 If you want to play with the API :
  - nothing ! Enjoy
