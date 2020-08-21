@@ -20,11 +20,12 @@ If you want to play with the API :
 The plugin comes with a prebuilt statusline, as seen in the screenshot.<br>
 You should however note that your current tmux setting may interfere with it.
 
-To use the default template, put this amongst your `autocmd`s
+To use the default template, put this in your `init.vim`
 ```
-au WinEnter * OneStatus
+au BufEnter * :OneStatus
+set noshowmode noruler
 ```
-You can of course not use `WintEnter` but I found it sufficient for my use case.
+You can of course not use `BufEnter` but I found it sufficient for my use case.
 
 # Customization
 This is how the OneStatus command is implemented.
