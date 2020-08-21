@@ -8,9 +8,15 @@ endif
 
 let g:loaded_onestatus = 1
 let g:onestatus_default_layout = 1
+let s:cwd_formated = ""
+
+function s:setCurDir()
+  let cwd = getcwd()
+  let s:cwd_formated = get(split(cwd, '/')[-1:], 0, 'root')
+endfun
 
 fun s:getFormated()
-  return g:cwd_formated
+  return s:cwd_formated
 endfun
 
 fun s:getHead()
