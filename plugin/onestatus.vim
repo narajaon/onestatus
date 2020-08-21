@@ -19,6 +19,10 @@ fun s:getFormated()
   return g:cwd_formated
 endfun
 
+fun s:getFileType()
+  return &filetype != '' ? printf('[%s]', &filetype) : ''
+endfun
+
 fun s:getHead()
   let head = FugitiveHead()
   if (head == "")
@@ -35,7 +39,7 @@ fun s:getColor(colSchem, command, isStyleOnly) abort
 endfun
 
 " set-option -g status-right
-let s:right = { -> {'command': 'set-option -g status-right', 'attributes': [{"fg": "#ffd166", "bg": "default", "label": ""},{"fg": "#26547c", "bg": "#ffd166", "label": "~/" . s:getFormated()}, {"fg": "#26547c","bg": "#ffd166", "label": ""}, {"fg": "#fcfcfc", "bg": "#26547c", "label": printf(&filetype ? '[%s]' : '%s', &filetype)}, {"fg": "#218380","bg": "#26547c", "label": ""}, {"fg": "#fcfcfc", "bg": "#218380", "label": s:getHead()}]}} 
+let s:right = { -> {'command': 'set-option -g status-right', 'attributes': [{"fg": "#ffd166", "bg": "default", "label": ""},{"fg": "#26547c", "bg": "#ffd166", "label": "~/" . s:getFormated()}, {"fg": "#26547c","bg": "#ffd166", "label": ""}, {"fg": "#fcfcfc", "bg": "#26547c", "label": s:getFileType()}, {"fg": "#218380","bg": "#26547c", "label": ""}, {"fg": "#fcfcfc", "bg": "#218380", "label": s:getHead()}]}} 
 
 " set-window-option -g window-status-current-style 
 let s:curwin = { -> {'command': 'set-window-option -g window-status-current-style ', 'attributes': [{"fg": '#ffd167', "bg": 'default', "isStyleOnly": v:true}]}}
