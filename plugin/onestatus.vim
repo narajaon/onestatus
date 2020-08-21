@@ -1,5 +1,5 @@
 if !exists(':OneStatus*')
-  command! OneStatus :call onestatus#build([s:defaultStyle(), s:right(), s:curwin(), s:winlist(), s:left()])
+  command! OneStatus call s:setCurDir() | call onestatus#build([s:defaultStyle(), s:right(), s:curwin(), s:winlist(), s:left()])
 endif
 
 if exists('g:loaded_onestatus')
@@ -35,7 +35,7 @@ fun s:getColor(colSchem, command, isStyleOnly) abort
 endfun
 
 " set-option -g status-right
-let s:right = { -> {'command': 'set-option -g status-right', 'attributes': [{"fg": "#ffd166", "bg": "default", "label": ""},{"fg": "#26547c", "bg": "#ffd166", "label": "~/" . s:getFormated()}, {"fg": "#26547c","bg": "#ffd166", "label": ""}, {"fg": "#fcfcfc", "bg": "#26547c", "label": printf('[%s]', &filetype)}, {"fg": "#218380","bg": "#26547c", "label": ""}, {"fg": "#fcfcfc", "bg": "#218380", "label": s:getHead()}]}} 
+let s:right = { -> {'command': 'set-option -g status-right', 'attributes': [{"fg": "#ffd166", "bg": "default", "label": ""},{"fg": "#26547c", "bg": "#ffd166", "label": "~/" . s:getFormated()}, {"fg": "#26547c","bg": "#ffd166", "label": ""}, {"fg": "#fcfcfc", "bg": "#26547c", "label": printf(&filetype ? '[%s]' : '%s', &filetype)}, {"fg": "#218380","bg": "#26547c", "label": ""}, {"fg": "#fcfcfc", "bg": "#218380", "label": s:getHead()}]}} 
 
 " set-window-option -g window-status-current-style 
 let s:curwin = { -> {'command': 'set-window-option -g window-status-current-style ', 'attributes': [{"fg": '#ffd167', "bg": 'default', "isStyleOnly": v:true}]}}
@@ -52,9 +52,7 @@ let s:defaultStyle = { -> s:getColor('CursorLineNr', 'set-option status-style', 
 " set default config
 if g:onestatus_default_layout
   aug onestatus_aug
-    au!
-    au WinEnter * call s:setCurDir()
-    au WinEnter * :OneStatus
+    au! BufEnter * :OneStatus
   aug END
 
   call onestatus#build([
