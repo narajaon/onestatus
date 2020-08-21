@@ -51,6 +51,10 @@ let s:defaultStyle = { -> s:getColor('CursorLineNr', 'set-option status-style', 
 
 " set default config
 if g:onestatus_default_layout
+  aug onestatus_aug
+    au! WinEnter,WinLeave * call OneStatus
+  aug END
+
   call onestatus#build([
         \{'command' : 'set-option -g status-justify centre'},
         \{'command': 'set-option status-right-length 50'},
