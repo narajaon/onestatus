@@ -1,5 +1,5 @@
 if !exists(':OneStatus*')
-  command! OneStatus :call onestatus#build([s:defaultStyle(), s:right(), s:curwin(), s:winlist(), s:left()])
+  command! OneStatus call s:setCurDir() | call onestatus#build([s:defaultStyle(), s:right(), s:curwin(), s:winlist(), s:left()])
 endif
 
 if exists('g:loaded_onestatus')
@@ -8,9 +8,19 @@ endif
 
 let g:loaded_onestatus = 1
 let g:onestatus_default_layout = 1
+let g:cwd_formated = ""
+
+function s:setCurDir()
+  let cwd = getcwd()
+  let g:cwd_formated = get(split(cwd, '/')[-1:], 0, 'root')
+endfun
 
 fun s:getFormated()
   return g:cwd_formated
+endfun
+
+fun s:getFileType()
+  return &filetype != '' ? printf('[%s]', &filetype) : ''
 endfun
 
 fun s:getHead()
@@ -29,7 +39,7 @@ fun s:getColor(colSchem, command, isStyleOnly) abort
 endfun
 
 " set-option -g status-right
-let s:right = { -> {'command': 'set-option -g status-right', 'attributes': [{"fg": "#ffd166", "bg": "default", "label": ""},{"fg": "#26547c", "bg": "#ffd166", "label": "~/" . s:getFormated()}, {"fg": "#26547c","bg": "#ffd166", "label": ""}, {"fg": "#fcfcfc", "bg": "#26547c", "label": printf('[%s]', &filetype)}, {"fg": "#218380","bg": "#26547c", "label": ""}, {"fg": "#fcfcfc", "bg": "#218380", "label": s:getHead()}]}} 
+let s:right = { -> {'command': 'set-option -g status-right', 'attributes': [{"fg": "#ffd166", "bg": "default", "label": ""},{"fg": "#26547c", "bg": "#ffd166", "label": "~/" . s:getFormated()}, {"fg": "#26547c","bg": "#ffd166", "label": ""}, {"fg": "#fcfcfc", "bg": "#26547c", "label": s:getFileType()}, {"fg": "#218380","bg": "#26547c", "label": ""}, {"fg": "#fcfcfc", "bg": "#218380", "label": s:getHead()}]}} 
 
 " set-window-option -g window-status-current-style 
 let s:curwin = { -> {'command': 'set-window-option -g window-status-current-style ', 'attributes': [{"fg": '#ffd167', "bg": 'default', "isStyleOnly": v:true}]}}
@@ -45,6 +55,10 @@ let s:defaultStyle = { -> s:getColor('CursorLineNr', 'set-option status-style', 
 
 " set default config
 if g:onestatus_default_layout
+  aug onestatus_aug
+    au! BufEnter * :OneStatus
+  aug END
+
   call onestatus#build([
         \{'command' : 'set-option -g status-justify centre'},
         \{'command': 'set-option status-right-length 50'},
