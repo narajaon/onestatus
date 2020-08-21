@@ -58,3 +58,6 @@ set-option -g status-left #[fg=#6c757d,bg=#fcfcfc]#H
 - Write a proper `:h`
 - Add more default templates
 - Improve default template theme integration
+
+# License
+Distributed under the same terms as Vim itself. See the vim license.
