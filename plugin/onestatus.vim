@@ -53,8 +53,8 @@ let s:defaultStyle = { -> s:getColor('CursorLineNr', 'set-option status-style', 
 if g:onestatus_default_layout
   aug onestatus_aug
     au!
-    au WinEnter,WinLeave * call s:setCurDir()
-    au WinEnter,WinLeave * :OneStatus
+    au WinEnter * call s:setCurDir()
+    au WinEnter * :OneStatus
   aug END
 
   call onestatus#build([
