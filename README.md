@@ -14,7 +14,8 @@ If you just want to use the default template :
  - https://github.com/tpope/vim-fugitive installed
 
 If you want to play with the API :
- - nothing ! Enjoy
+ - nothing ! Make sure to disable the default config by setting and you're done
+ `let g:onestatus_default_layout = 0`
 
 # Usage
 The plugin comes with a prebuilt statusline, as seen in the screenshot.<br>
