@@ -45,13 +45,13 @@ let s:right = { -> {'command': 'set-option -g status-right', 'attributes': [{"fg
 let s:curwin = { -> {'command': 'set-window-option -g window-status-current-style ', 'attributes': [{"fg": '#ffd167', "bg": 'default', "isStyleOnly": v:true}]}}
 
 " set-window-option -g window-status-style
-let s:winlist = { -> {'command': 'set-window-option -g window-status-style', 'attributes': [{"fg": '#fcfcfc', "bg": 'default', "isStyleOnly": v:true}]}}
+let s:winlist = { -> {'command': 'set-window-option -g window-status-style', 'attributes': [{"fg": '#6c757d', "bg": 'default', "isStyleOnly": v:true}]}}
 
 " set-option -g status-left
 let s:left = { -> {'command': 'set-option -g status-left', 'attributes': [{"fg": "#6c757d", "bg": "default", "label": "#H"}]}}
 
 " set-option status-style
-let s:defaultStyle = { -> s:getColor('CursorLineNr', 'set-option status-style', v:true)}
+let s:defaultStyle = { -> s:getColor('LineNr', 'set-option status-style', v:true)}
 
 " set default config
 if g:onestatus_default_layout
