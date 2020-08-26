@@ -51,7 +51,7 @@ let s:winlist = { -> {'command': 'set-window-option -g window-status-style', 'at
 let s:left = { -> {'command': 'set-option -g status-left', 'attributes': [{"fg": "#6c757d", "bg": "default", "label": "#H"}]}}
 
 " set-option status-style
-let s:defaultStyle = { -> s:getColor('LineNr', 'set-option status-style', v:true)}
+let s:defaultStyle = { -> s:getColor('StatusLineNC', 'set-option status-style', v:true)}
 
 " set default config
 if g:onestatus_default_layout
