@@ -19,8 +19,8 @@ fun s:getFormated()
   return g:cwd_formated
 endfun
 
-fun s:getFileType()
-  return &filetype != '' ? printf('[%s]', &filetype) : ''
+fun s:getFileName()
+  return &filetype != '' ? printf(' %s ', expand("%:t:r")) : ''
 endfun
 
 fun s:getHead()
@@ -38,18 +38,23 @@ fun s:getColor(colSchem, command, isStyleOnly) abort
   return { 'command': a:command, 'attributes': [attrs]}
 endfun
 
-" set-option -g status-right
-let s:right = { -> {'command': 'set-option -g status-right', 'attributes': [{"fg": "#ffd166", "bg": "default", "label": ""},{"fg": "#26547c", "bg": "#ffd166", "label": "~/" . s:getFormated()}, {"fg": "#26547c","bg": "#ffd166", "label": ""}, {"fg": "#fcfcfc", "bg": "#26547c", "label": s:getFileType()}, {"fg": "#218380","bg": "#26547c", "label": ""}, {"fg": "#fcfcfc", "bg": "#218380", "label": s:getHead()}]}} 
+let s:col1 = "#218380"
+let s:col2 = "#ffd167"
+let s:col3 = "#6c757d"
+let s:col4 = "default"
+let s:col5 = "default"
+
+let s:right = { -> {'command': 'set-option -g status-right', 'attributes': [{"fg": s:col2, "bg": "default", "label": ""},{"fg": s:col1, "bg": s:col2, "label": "~/" . s:getFormated()}, {"fg": s:col1,"bg": s:col2, "label": ""}, {"fg": "#fcfcfc", "bg": s:col1, "label": s:getHead()}]}} 
 
 " set-window-option -g window-status-current-style 
-let s:curwin = { -> {'command': 'set-window-option -g window-status-current-style ', 'attributes': [{"fg": '#ffd167', "bg": 'default', "isStyleOnly": v:true}]}}
+let s:curwin = { -> {'command': 'set-window-option -g window-status-current-style ', 'attributes': [{"fg": s:col2, "bg": 'default', "isStyleOnly": v:true}]}}
 
 " set-window-option -g window-status-style
-let s:winlist = { -> {'command': 'set-window-option -g window-status-style', 'attributes': [{"fg": '#6c757d', "bg": 'default', "isStyleOnly": v:true}]}}
+let s:winlist = { -> {'command': 'set-window-option -g window-status-style', 'attributes': [{"fg": s:col3, "bg": 'default', "isStyleOnly": v:true}]}}
 
 " set-option -g status-left
-let s:left = { -> {'command': 'set-option -g status-left', 'attributes': [{"fg": "#6c757d", "bg": "default", "label": "#H"}]}}
-
+let s:left = { -> {'command': 'set-option -g status-left', 'attributes': [{"fg": s:col5, "bg": s:col4, "label": s:getFileName()}]}}
+" {"fg": "#fcfcfc", "bg": s:col3, "label": "#H"},
 " set-option status-style
 let s:defaultStyle = { -> s:getColor('Normal', 'set-option status-style', v:true)}
 
@@ -57,7 +62,7 @@ let s:defaultStyle = { -> s:getColor('Normal', 'set-option status-style', v:true
 if g:onestatus_default_layout
   call onestatus#build([
         \{'command' : 'set-option -g status-justify centre'},
-        \{'command': 'set-option status-right-length 50'},
-        \{'command': 'set-option status-left-length 60'},
+        \{'command': 'set-option status-right-length 30'},
+        \{'command': 'set-option status-left-length 50'},
         \])
 endif

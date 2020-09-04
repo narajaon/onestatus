@@ -40,7 +40,7 @@ fun s:buildSection(attrs)
   let fg = get(a:attrs, 'fg', '')
   let label = get(a:attrs, 'label', '')
   let fmt = get(a:attrs, 'isStyleOnly', v:false) ? 'fg=%s,bg=%s%s' : '"#[fg=%s,bg=%s]%s"'
-  let parts = printf(fmt, fg, bg, label ? label : ' '.label)
+  let parts = printf(fmt, fg, bg, label)
   return parts
 endfun
 
