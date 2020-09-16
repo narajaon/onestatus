@@ -20,7 +20,7 @@ fun s:getFormated()
 endfun
 
 fun s:getFileName()
-  return &filetype != '' ? printf(' %s ', expand("%:t:r")) : ''
+  return &filetype != '' ? printf(' %s ', expand("%:t")) : ''
 endfun
 
 fun s:getHead()
