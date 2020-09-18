@@ -1,5 +1,9 @@
-if !exists(':OneStatus*')
-  command! OneStatus call s:setCurDir() | call onestatus#build([s:defaultStyle(), s:right(), s:curwin(), s:winlist(), s:left()])
+if !exists(':OneStatus')
+  if !exists('g:onestatus_default_layout')
+    command! OneStatus call s:setCurDir() | call onestatus#build([s:defaultStyle(), s:right(), s:curwin(), s:winlist(), s:left()])
+  else
+    finish
+  endif
 endif
 
 if exists('g:loaded_onestatus')
@@ -12,7 +16,7 @@ let g:cwd_formated = ""
 
 function s:setCurDir()
   let cwd = getcwd()
-  let g:cwd_formated = get(split(cwd, '/')[-1:], 0, 'root')
+  let g:cwd_formated = printf(' ~/%s ', get(split(cwd, '/')[-1:], 0, 'root'))
 endfun
 
 fun s:getFormated()
@@ -44,7 +48,7 @@ let s:col3 = "#6c757d"
 let s:col4 = "default"
 let s:col5 = "default"
 
-let s:right = { -> {'command': 'set-option -g status-right', 'attributes': [{"fg": s:col2, "bg": "default", "label": ""},{"fg": s:col1, "bg": s:col2, "label": "~/" . s:getFormated()}, {"fg": s:col1,"bg": s:col2, "label": ""}, {"fg": "#fcfcfc", "bg": s:col1, "label": s:getHead()}]}} 
+let s:right = { -> {'command': 'set-option -g status-right', 'attributes': [{"fg": s:col2, "bg": "default", "label": ""},{"fg": s:col1, "bg": s:col2, "label": s:getFormated()}, {"fg": s:col1,"bg": s:col2, "label": ""}, {"fg": "#fcfcfc", "bg": s:col1, "label": s:getHead()}]}} 
 
 " set-window-option -g window-status-current-style 
 let s:curwin = { -> {'command': 'set-window-option -g window-status-current-style ', 'attributes': [{"fg": s:col2, "bg": 'default', "isStyleOnly": v:true}]}}
@@ -54,7 +58,7 @@ let s:winlist = { -> {'command': 'set-window-option -g window-status-style', 'at
 
 " set-option -g status-left
 let s:left = { -> {'command': 'set-option -g status-left', 'attributes': [{"fg": s:col5, "bg": s:col4, "label": s:getFileName()}]}}
-" {"fg": "#fcfcfc", "bg": s:col3, "label": "#H"},
+
 " set-option status-style
 let s:defaultStyle = { -> s:getColor('Normal', 'set-option status-style', v:true)}
 
