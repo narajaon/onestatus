@@ -1,6 +1,6 @@
 if !exists(':OneStatus')
   if !exists('g:onestatus_default_layout')
-    command! OneStatus call s:setCurDir() | call onestatus#build([s:defaultStyle(), s:right(), s:curwin(), s:winlist(), s:left()])
+    command! OneStatus call s:setCurDir() | call onestatus#build(s:right())
   else
     finish
   endif
@@ -48,7 +48,17 @@ let s:col3 = "#6c757d"
 let s:col4 = "default"
 let s:col5 = "default"
 
-let s:right = { -> {'command': 'set-option -g status-right', 'attributes': [{"fg": s:col2, "bg": "default", "label": ""},{"fg": s:col1, "bg": s:col2, "label": s:getFormated()}, {"fg": s:col1,"bg": s:col2, "label": ""}, {"fg": "#fcfcfc", "bg": s:col1, "label": s:getHead()}]}} 
+fun s:getConfig(path) abort
+  let s:config = json_decode(readfile(a:path))
+  let s:template = []
+  for [key, val] in items(s:config)
+    call add(s:template, { 'command': 'set-option -g ' . key, 'attributes': val })
+  endfor
+  return s:template
+endfun
+
+let s:right = { -> s:getConfig(expand('$MYVIMDIR') . '/onestatus.json') }
+" let s:right = { -> {'command': 'set-option -g status-right', 'attributes': [{"fg": s:col2, "bg": "default", "label": ""},{"fg": s:col1, "bg": s:col2, "label": s:getFormated()}, {"fg": s:col1,"bg": s:col2, "label": ""}, {"fg": "#fcfcfc", "bg": s:col1, "label": s:getHead()}]}} 
 
 " set-window-option -g window-status-current-style 
 let s:curwin = { -> {'command': 'set-window-option -g window-status-current-style ', 'attributes': [{"fg": s:col2, "bg": 'default', "isStyleOnly": v:true}]}}
@@ -69,7 +79,7 @@ if g:onestatus_default_layout
   aug END
 
   call onestatus#build([
-        \{'command' : 'set-option -g status-justify centre'},
+        \{'command' : 'set-option status-justify centre'},
         \{'command': 'set-option status-right-length 30'},
         \{'command': 'set-option status-left-length 50'},
         \])
