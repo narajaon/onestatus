@@ -28,18 +28,18 @@ fun s:getFileName()
 endfun
 
 fun s:getHead()
-  let head = FugitiveHead()
-  if (head == "")
+  let s:head = FugitiveHead()
+  if (s:head == "")
     return ""
   endif
-  return printf("  %s ", head)
+  return printf("  %s ", s:head)
 endfun
 
 fun s:getColor(colSchem, command, isStyleOnly) abort
-  let fg = synIDattr(synIDtrans(hlID(a:colSchem)), 'fg#')
-  let bg = synIDattr(synIDtrans(hlID(a:colSchem)), 'bg#')
-  let attrs = {'isStyleOnly': a:isStyleOnly, 'fg': fg, 'bg': bg}
-  return { 'command': a:command, 'attributes': [attrs]}
+  let s:fg = synIDattr(synIDtrans(hlID(a:colSchem)), 'fg#')
+  let s:bg = synIDattr(synIDtrans(hlID(a:colSchem)), 'bg#')
+  let s:attrs = {'isStyleOnly': a:isStyleOnly, 'fg': s:fg, 'bg': s:bg}
+  return { 'command': a:command, 'attributes': [s:attrs]}
 endfun
 
 let s:col1 = "#218380"
@@ -64,6 +64,10 @@ let s:defaultStyle = { -> s:getColor('Normal', 'set-option status-style', v:true
 
 " set default config
 if g:onestatus_default_layout
+  aug onestatus_aug
+    au! BufEnter * :OneStatus
+  aug END
+
   call onestatus#build([
         \{'command' : 'set-option -g status-justify centre'},
         \{'command': 'set-option status-right-length 30'},

@@ -1,10 +1,10 @@
 fun onestatus#build(cmds) abort
-  let index = 0
-  while index < len(a:cmds)
-    if !has_key(a:cmds[index], 'command')
-      echoer 'command attribute missing in object ' . index
+  let s:index = 0
+  while s:index < len(a:cmds)
+    if !has_key(a:cmds[s:index], 'command')
+      echoer 'command attribute missing in object ' . s:index
     endif
-    let index = index + 1
+    let s:index = s:index + 1
   endwhile
   call s:apply(s:buildLine(a:cmds))
 endfun
@@ -15,24 +15,24 @@ endfun
 
 fun s:apply(line_settings) abort
   try
-    let save_cpo = &cpo
+    let s:save_cpo = &cpo
     set cpo&vim
-    let temp_file = tempname()
-    call writefile(a:line_settings, temp_file)
-    call system("tmux source ". s:wrap_in_quotes(temp_file))
+    let s:temp_file = tempname()
+    call writefile(a:line_settings, s:temp_file)
+    call system("tmux source ". s:wrap_in_quotes(s:temp_file))
   finally
-    let &cpo = save_cpo
-    unlet save_cpo
-    call delete(temp_file)
+    let &cpo = s:save_cpo
+    unlet s:save_cpo
+    call delete(s:temp_file)
   endtry
 endfun
 
 fun s:buildLine(parts)
-  let status = []
+  let s:status = []
   for sections in a:parts
-    call add(status, s:buildPart(sections))
+    call add(s:status, s:buildPart(sections))
   endfor
-  return status
+  return s:status
 endfun
 
 fun s:buildSection(attrs)
@@ -45,12 +45,12 @@ fun s:buildSection(attrs)
 endfun
 
 fun s:buildPart(sections)
-  let part = [] 
+  let s:part = [] 
   if has_key(a:sections, 'attributes')
     for sect in a:sections.attributes
-      call add(part, s:buildSection(sect))
+      call add(s:part, s:buildSection(sect))
     endfor
   endif
-  let res =  printf('%s %s', a:sections.command, join(part, ''))
-  return res
+  let s:res =  printf('%s %s', a:sections.command, join(s:part, ''))
+  return s:res
 endfun
