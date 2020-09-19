@@ -12,7 +12,7 @@ Much better !
 If you just want to use the default template :
  - a font that supports powerline
  - https://github.com/tpope/vim-fugitive installed
- - setup a onestatus.json (example below)
+ - setup a `onestatus.json` file (example below)
 
 If you want to play with the API :
  - make sure to disable the default config by setting
