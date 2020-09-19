@@ -85,12 +85,12 @@ Currently only `s:getDefaultColor` is supported.
 
 ## Available onestatus functions
 labelFunc:
-- s:getCWD
-- s:getFileName
-- s:getHead
+- `s:getCWD`
+- `s:getFileName`
+- `s:getHead`
 
 attributes:
-- s:getDefaultColor (it will make your statusline's background match with your vim's theme)
+- `s:getDefaultColor` (it will make your statusline's background match with your vim's theme)
 
 ## For even more customization
 OneStatus also provides a helper to send more straightforward commands to tmux
