@@ -57,7 +57,7 @@ set laststatus = 0
 you can of course not use `BufEnter` and use `WinEnter` or some other events but I found it sufficient for my everyday use.
 
 ## The api
-you can notice that our json file has these types
+You must have noticed that the json file has these types of attributes
 - tmux option: an option that will be sent to tmux, you can learn more about them in `man tmux` 
 - tmux color: can be any color forma supported by tmux (ex: #ffd167)
 - onestatus' builtin function: they begin by `s:` like `s:getFileName`
