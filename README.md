@@ -20,19 +20,7 @@ If you want to play with the API :
   and you're done !
 
 # Usage
-The plugin comes with a prebuilt statusline, as seen in the screenshot.<br>
-**You should however note that your current tmux setting may interfere with it.**
-
-to use the default template, put this in your config file
-```
-au BufEnter * :OneStatus
-set noshowmode noruler
-set laststatus = 0
-```
-you can of course not use `BufEnter` and use `WinEnter` or some other events but I found it sufficient for my use case.
-
-# Customization
-since v0.2.0 you can now very easily customize your statusline via a `onestatus.json` file that you put in your **config folder ($HOME for vim and $HOME/.config/nvim for nvim)**.<br>
+Since v0.2.0 you can now very easily customize your statusline via a `onestatus.json` file that you put in your **config folder ($HOME for vim and $HOME/.config/nvim for nvim)**.<br>
 If you want another path you can override `g:onestatus_config_path`<br>
 Here's an example of configuration file
 
@@ -58,6 +46,14 @@ Here's an example of configuration file
 ```
 
 which will give your current git head and the name of the focused file just like shown in the screenshot
+
+Then you can use the full power of onestatus like in this example
+```
+au BufEnter * :OneStatus
+set noshowmode noruler
+set laststatus = 0
+```
+you can of course not use `BufEnter` and use `WinEnter` or some other events but I found it sufficient for my everyday use.
 
 ## The api
 you can notice that our json file has these types
