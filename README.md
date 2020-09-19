@@ -47,10 +47,10 @@ here's an example of configuration file
   ],
   "status-style": "s:getDefaultColor",
   "window-status-style": [
-    { "fg": "#6c757d", "bg": "default", "isstyleonly": true }
+    { "fg": "#6c757d", "bg": "default", "isStyleOnly": true }
   ],
   "window-status-current-style": [
-    { "fg": "#ffd167", "bg": "default", "isstyleonly": true }
+    { "fg": "#ffd167", "bg": "default", "isStyleOnly": true }
   ]
 }
 ```
