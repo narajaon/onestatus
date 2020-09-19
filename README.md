@@ -43,7 +43,7 @@ here's an example of configuration file
     { "fg": "#fcfcfc", "bg": "#218380", "labelFunc": "s:getHead" }
   ],
   "status-left": [
-    { "fg": "default", "bg": "default", "labelfunc": "s:getFileName" }
+    { "fg": "default", "bg": "default", "labelFunc": "s:getFileName" }
   ],
   "status-style": "s:getDefaultColor",
   "window-status-style": [
