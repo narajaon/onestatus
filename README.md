@@ -76,8 +76,8 @@ In order to give a maximum amount of flexibility, attributes can either be an ar
   "fg": optional tmux color (will default to tmux's default),
   "bg": optional tmux color (will default to tmux's default),
   "label": the text to be displayed if your option takes a string as an argument (ex: status-left ),
-  "labelfunc": you can dynamicaly display labels by using one of the functions exposed by onestatus (will take precedance over "label"),
-  "isstyleonly": a boolean that has to be set to true if your option does not display a label
+  "labelFunc": you can dynamicaly display labels by using one of the functions exposed by onestatus (will take precedance over "label"),
+  "isStyleOnly": a boolean that has to be set to true if your option does not display a label
 }
 ```
 
