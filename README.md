@@ -31,26 +31,27 @@ set laststatus = 0
 you can of course not use `BufEnter` and use `WinEnter` or some other events but I found it sufficient for my use case.
 
 # Customization
-since v0.2.0 you can now very easily customize your statusline via a `onestatus.json` file that you put in your **config folder ($HOME for vim and $HOME/.config/nvim for nvim) so make sure it's properly set**.
+since v0.2.0 you can now very easily customize your statusline via a `onestatus.json` file that you put in your **config folder ($HOME for vim and $HOME/.config/nvim for nvim)**.
+If you want another path you can override `g:onestatus_config_path`
 here's an example of configuration file
 
 ```json
 {
   "status-right": [
     { "fg": "#ffd167", "bg": "default", "label": "" },
-    { "fg": "#218380", "bg": "#ffd167", "labelfunc": "s:getcwd" },
+    { "fg": "#218380", "bg": "#ffd167", "labelFunc": "s:getCWD" },
     { "fg": "#218380", "bg": "#ffd167", "label": "" },
-    { "fg": "#fcfcfc", "bg": "#218380", "labelfunc": "s:gethead" }
+    { "fg": "#fcfcfc", "bg": "#218380", "labelFunc": "s:getHead" }
   ],
   "status-left": [
-    { "fg": "default", "bg": "default", "labelfunc": "s:getfilename" }
+    { "fg": "default", "bg": "default", "labelFunc": "s:getFileName" }
   ],
-  "status-style": "s:getdefaultcolor",
+  "status-style": "s:getDefaultColor",
   "window-status-style": [
-    { "fg": "#6c757d", "bg": "default", "isstyleonly": true }
+    { "fg": "#6c757d", "bg": "default", "isStyleOnly": true }
   ],
   "window-status-current-style": [
-    { "fg": "#ffd167", "bg": "default", "isstyleonly": true }
+    { "fg": "#ffd167", "bg": "default", "isStyleOnly": true }
   ]
 }
 ```
@@ -76,13 +77,13 @@ In order to give a maximum amount of flexibility, attributes can either be an ar
   "fg": optional tmux color (will default to tmux's default),
   "bg": optional tmux color (will default to tmux's default),
   "label": the text to be displayed if your option takes a string as an argument (ex: status-left ),
-  "labelfunc": you can dynamicaly display labels by using one of the functions exposed by onestatus (will take precedance over "label"),
-  "isstyleonly": a boolean that has to be set to true if your option does not display a label
+  "labelFunc": you can dynamicaly display labels by using one of the functions exposed by onestatus (will take precedance over "label"),
+  "isStyleOnly": a boolean that has to be set to true if your option does not display a label
 }
 ```
 
 You can also use also use a onestatus function to dynamicaly generate your attributes.
-Currently only `s:getdefaultcolor` is supported.
+Currently only `s:getDefaultColor` is supported.
 
 ## Available onestatus functions
 labelFunc:
@@ -92,6 +93,17 @@ labelFunc:
 
 attributes:
 - s:getDefaultColor (it will make your statusline's background match with your vim's theme)
+
+## For even more customization
+OneStatus also provides a helper to send more straightforward commands to tmux
+
+```vim
+  call onestatus#build([
+        \{'command' : 'set-option status-justify centre'},
+        \{'command': 'set-option status-right-length 30'},
+        \{'command': 'set-option status-left-length 50'},
+        \])
+```
 
 # TODO
 - Write a proper `:h`
