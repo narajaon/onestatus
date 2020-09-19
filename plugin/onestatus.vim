@@ -1,5 +1,10 @@
-if !exists(':OneStatus*')
-  command! OneStatus call s:setCurDir() | call onestatus#build([s:defaultStyle(), s:right(), s:curwin(), s:winlist(), s:left()])
+if !exists(':OneStatus')
+  if !exists('g:onestatus_default_layout')
+    let g:onestatus_default_layout = 1
+    command! OneStatus call s:setCurDir() | call onestatus#build(s:onestatusDefault())
+  else
+    finish
+  endif
 endif
 
 if exists('g:loaded_onestatus')
@@ -7,20 +12,19 @@ if exists('g:loaded_onestatus')
 endif
 
 let g:loaded_onestatus = 1
-let g:onestatus_default_layout = 1
 let g:cwd_formated = ""
 
 function s:setCurDir()
   let cwd = getcwd()
-  let g:cwd_formated = get(split(cwd, '/')[-1:], 0, 'root')
+  let g:cwd_formated = printf(' ~/%s ', get(split(cwd, '/')[-1:], 0, 'root'))
 endfun
 
-fun s:getFormated()
+fun s:getCWD()
   return g:cwd_formated
 endfun
 
-fun s:getFileType()
-  return &filetype != '' ? printf('[%s]', &filetype) : ''
+fun s:getFileName()
+  return &filetype != '' ? printf(' %s ', expand("%:t")) : ''
 endfun
 
 fun s:getHead()
@@ -31,37 +35,48 @@ fun s:getHead()
   return printf("  %s ", s:head)
 endfun
 
-fun s:getColor(colSchem, command, isStyleOnly) abort
-  let s:fg = synIDattr(synIDtrans(hlID(a:colSchem)), 'fg#')
-  let s:bg = synIDattr(synIDtrans(hlID(a:colSchem)), 'bg#')
-  let s:attrs = {'isStyleOnly': a:isStyleOnly, 'fg': s:fg, 'bg': s:bg}
-  return { 'command': a:command, 'attributes': [s:attrs]}
+fun s:getDefaultColor() abort
+  let s:fg = synIDattr(synIDtrans(hlID('Normal')), 'fg#')
+  let s:bg = synIDattr(synIDtrans(hlID('Normal')), 'bg#')
+  let s:attrs = {'isStyleOnly': v:true, 'fg': s:fg, 'bg': s:bg}
+  return [s:attrs]
 endfun
 
-" set-option -g status-right
-let s:right = { -> {'command': 'set-option -g status-right', 'attributes': [{"fg": "#ffd166", "bg": "default", "label": ""},{"fg": "#26547c", "bg": "#ffd166", "label": "~/" . s:getFormated()}, {"fg": "#26547c","bg": "#ffd166", "label": ""}, {"fg": "#fcfcfc", "bg": "#26547c", "label": s:getFileType()}, {"fg": "#218380","bg": "#26547c", "label": ""}, {"fg": "#fcfcfc", "bg": "#218380", "label": s:getHead()}]}} 
+fun s:execLabelFuncs(val)
+  for [key, val] in items(a:val)
+    if key == "labelFunc"
+      let a:val.label = function(val)()
+      unlet a:val.labelFunc
+    endif
+  endfor
+  return a:val
+endfun
 
-" set-window-option -g window-status-current-style 
-let s:curwin = { -> {'command': 'set-window-option -g window-status-current-style ', 'attributes': [{"fg": '#ffd167', "bg": 'default', "isStyleOnly": v:true}]}}
+fun s:getConfig(path) abort
+  let config = json_decode(readfile(a:path))
+  let template = []
+  for [key, val] in items(config)
 
-" set-window-option -g window-status-style
-let s:winlist = { -> {'command': 'set-window-option -g window-status-style', 'attributes': [{"fg": '#fcfcfc', "bg": 'default', "isStyleOnly": v:true}]}}
+    if type(val) == v:t_list
+      let fmtVal = map(val, { _,dict -> s:execLabelFuncs(dict) })
+    elseif type(val) == v:t_string
+      let fmtVal = function(val)()
+    else
+      throw printf('% has bad attribute type', key)
+    endif
 
-" set-option -g status-left
-let s:left = { -> {'command': 'set-option -g status-left', 'attributes': [{"fg": "#6c757d", "bg": "default", "label": "#H"}]}}
+    call add(template, { 'command': 'set-window-option -g ' . key, 'attributes': fmtVal })
+  endfor
+  return template
+endfun
 
-" set-option status-style
-let s:defaultStyle = { -> s:getColor('CursorLineNr', 'set-option status-style', v:true)}
+let s:onestatusDefault= { -> s:getConfig(expand('$MYVIMDIR') . '/onestatus.json') }
 
 " set default config
 if g:onestatus_default_layout
-  aug onestatus_aug
-    au! BufEnter * :OneStatus
-  aug END
-
   call onestatus#build([
-        \{'command' : 'set-option -g status-justify centre'},
-        \{'command': 'set-option status-right-length 50'},
-        \{'command': 'set-option status-left-length 60'},
+        \{'command' : 'set-option status-justify centre'},
+        \{'command': 'set-option status-right-length 30'},
+        \{'command': 'set-option status-left-length 50'},
         \])
 endif

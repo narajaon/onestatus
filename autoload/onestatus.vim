@@ -36,12 +36,12 @@ fun s:buildLine(parts)
 endfun
 
 fun s:buildSection(attrs)
-  let s:bg = get(a:attrs, 'bg', '')
-  let s:fg = get(a:attrs, 'fg', '')
-  let s:label = get(a:attrs, 'label', '')
-  let s:fmt = get(a:attrs, 'isStyleOnly', v:false) ? 'fg=%s,bg=%s%s' : '"#[fg=%s,bg=%s]%s"'
-  let s:parts = printf(s:fmt, s:fg, s:bg, s:label ? s:label : ' '.s:label)
-  return s:parts
+  let bg = get(a:attrs, 'bg', '')
+  let fg = get(a:attrs, 'fg', '')
+  let label = get(a:attrs, 'label', '')
+  let fmt = get(a:attrs, 'isStyleOnly', v:false) ? 'fg=%s,bg=%s%s' : '"#[fg=%s,bg=%s]%s"'
+  let parts = printf(fmt, fg, bg, label)
+  return parts
 endfun
 
 fun s:buildPart(sections)
