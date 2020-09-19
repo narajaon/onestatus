@@ -94,7 +94,7 @@ attributes:
 - s:getDefaultColor (it will make your statusline's background match with your vim's theme)
 
 ## For even more customization
-OneStatus also provides a helper to send more straightforward functions to tmux
+OneStatus also provides a helper to send more straightforward commands to tmux
 
 ```vim
   call onestatus#build([
