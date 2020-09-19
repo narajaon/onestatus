@@ -64,12 +64,13 @@ you can notice that our json file has these types
 - onestatus' builtin function: they begin by `s:` like `s:getfilename`
 
 and has this form
-```json
+```
 {
   option: attributes
 }
 ```
-in order to give a maximum amount of flexibility, attributes can either be an array of attribute of this shape:
+
+In order to give a maximum amount of flexibility, attributes can either be an array of attribute of this shape:
 ```
 {
   "fg": optional tmux color (will default to tmux's default),
