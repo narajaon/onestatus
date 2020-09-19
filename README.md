@@ -22,7 +22,7 @@ If you want to play with the API :
 The plugin comes with a prebuilt statusline, as seen in the screenshot.<br>
 You should however note that your current tmux setting may interfere with it.
 
-To use the default template, put this in your config file
+To use the default template, put this in your config file, which is your `.vimrc` file.
 ```
 au BufEnter * :OneStatus
 set noshowmode noruler
