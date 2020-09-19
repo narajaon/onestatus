@@ -38,14 +38,14 @@ here's an example of configuration file
 {
   "status-right": [
     { "fg": "#ffd167", "bg": "default", "label": "" },
-    { "fg": "#218380", "bg": "#ffd167", "labelfunc": "s:getcwd" },
+    { "fg": "#218380", "bg": "#ffd167", "labelfunc": "s:getCWD" },
     { "fg": "#218380", "bg": "#ffd167", "label": "" },
-    { "fg": "#fcfcfc", "bg": "#218380", "labelfunc": "s:gethead" }
+    { "fg": "#fcfcfc", "bg": "#218380", "labelfunc": "s:getHead" }
   ],
   "status-left": [
-    { "fg": "default", "bg": "default", "labelfunc": "s:getfilename" }
+    { "fg": "default", "bg": "default", "labelfunc": "s:getFileName" }
   ],
-  "status-style": "s:getdefaultcolor",
+  "status-style": "s:getDefaultColor",
   "window-status-style": [
     { "fg": "#6c757d", "bg": "default", "isstyleonly": true }
   ],
