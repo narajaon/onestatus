@@ -38,9 +38,9 @@ here's an example of configuration file
 {
   "status-right": [
     { "fg": "#ffd167", "bg": "default", "label": "" },
-    { "fg": "#218380", "bg": "#ffd167", "labelfunc": "s:getCWD" },
+    { "fg": "#218380", "bg": "#ffd167", "labelFunc": "s:getCWD" },
     { "fg": "#218380", "bg": "#ffd167", "label": "" },
-    { "fg": "#fcfcfc", "bg": "#218380", "labelfunc": "s:getHead" }
+    { "fg": "#fcfcfc", "bg": "#218380", "labelFunc": "s:getHead" }
   ],
   "status-left": [
     { "fg": "default", "bg": "default", "labelfunc": "s:getFileName" }
