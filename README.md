@@ -82,7 +82,7 @@ In order to give a maximum amount of flexibility, attributes can either be an ar
 ```
 
 You can also use also use a onestatus function to dynamicaly generate your attributes.
-Currently only `s:getdefaultcolor` is supported.
+Currently only `s:getDefaultColor` is supported.
 
 ## Available onestatus functions
 labelFunc:
