@@ -11,6 +11,14 @@ if exists('g:loaded_onestatus')
   finish
 endif
 
+if !exists('g:onestatus_config_path')
+  if has('nvim')
+    let g:onestatus_config_path = expand('$HOME/.config/nvim')
+  else
+    let g:onestatus_config_path = expand('$HOME')
+  endif
+endif
+
 let g:loaded_onestatus = 1
 let g:cwd_formated = ""
 
@@ -70,7 +78,7 @@ fun s:getConfig(path) abort
   return template
 endfun
 
-let s:onestatusDefault= { -> s:getConfig(expand('$MYVIMDIR') . '/onestatus.json') }
+let s:onestatusDefault= { -> s:getConfig(expand(g:onestatus_config_path) . '/onestatus.json') }
 
 " set default config
 if g:onestatus_default_layout

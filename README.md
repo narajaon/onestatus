@@ -31,7 +31,7 @@ set laststatus = 0
 you can of course not use `BufEnter` and use `WinEnter` or some other events but I found it sufficient for my use case.
 
 # Customization
-since v0.2.0 you can now very easily customize your statusline via a `onestatus.json` file that you put in your **$MYVIMDIR folder so make sure it's properly set**.
+since v0.2.0 you can now very easily customize your statusline via a `onestatus.json` file that you put in your **config folder ($HOME for vim and $HOME/.config/nvim for nvim) so make sure it's properly set**.
 here's an example of configuration file
 
 ```json
