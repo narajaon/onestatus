@@ -9,15 +9,16 @@ Much better !
 ![onestatus](https://user-images.githubusercontent.com/26607946/90639803-7f947f00-e22f-11ea-863e-e347f9379dfe.png)
 
 # Requirements
-If you just want to use the default template :
+If you just want to quickly use the plugin :
  - a font that supports powerline
  - https://github.com/tpope/vim-fugitive installed
- - setup a `onestatus.json` file (example below)
+ - copy the `onestatus.json` example given below (this file must be present in your vim config directory)
 
 If you want to play with the API :
  - make sure to disable the default config by setting
  `let g:onestatus_default_layout = 0`
-  and you're done !
+ - create your own personal `onestatus.json`
+  Have fun !
 
 # Usage
 Since v0.2.0 you can now very easily customize your statusline via a `onestatus.json` file that you put in your **config folder ($HOME for vim and $HOME/.config/nvim for nvim)**.<br>
