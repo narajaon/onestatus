@@ -93,6 +93,17 @@ labelFunc:
 attributes:
 - s:getDefaultColor (it will make your statusline's background match with your vim's theme)
 
+## For even more customization
+OneStatus also provides a helper to send more straightforward functions to tmux
+
+```vim
+  call onestatus#build([
+        \{'command' : 'set-option status-justify centre'},
+        \{'command': 'set-option status-right-length 30'},
+        \{'command': 'set-option status-left-length 50'},
+        \])
+```
+
 # TODO
 - Write a proper `:h`
 - Add more default templates
