@@ -21,9 +21,9 @@ If you want to play with the API :
   Have fun !
 
 # Usage
-Since v0.2.0 you can now very easily customize your statusline via a `onestatus.json` file that you put in your **config folder ($HOME for vim and $HOME/.config/nvim for nvim)**.<br>
+Since v0.2.0 you can very easily customize your statusline via a `onestatus.json` file that you put in your **config folder ($HOME for vim and $HOME/.config/nvim for nvim)**.<br>
 If you want another path you can override `g:onestatus_config_path`<br>
-Here's an example of configuration file
+Here's an example of configuration file that you can copy
 
 ```json
 {
