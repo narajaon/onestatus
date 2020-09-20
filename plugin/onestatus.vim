@@ -34,7 +34,7 @@ fun s:getFileName()
 endfun
 
 fun s:getHead()
-  let s:head = FugitiveHead()
+  let s:head = gitbranch#name()
   if (s:head == "")
     return ""
   endif
