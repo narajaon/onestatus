@@ -76,7 +76,16 @@ fun s:getConfig(path) abort
   return template
 endfun
 
-let s:onestatusDefault= { -> s:getConfig(expand(g:onestatus_config_path) . '/onestatus.json') }
+fun s:onestatusDefault()
+  let configPath = expand(g:onestatus_config_path) . '/onestatus.json'
+  if !filereadable(configPath)
+    echo 'OneStatus: onestatus.json not found. Please Provide one at ' . configPath . ' or override g:onestatus_config_path'
+    return []
+  endif
+  return s:getConfig(configPath) 
+endfun
+
+" let s:onestatusDefault= { -> s:getConfig(expand(g:onestatus_config_path) . '/onestatus.json') }
 
 " set default config
 if g:onestatus_default_layout == 1
