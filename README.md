@@ -97,6 +97,9 @@ attributes:
  Setting it to 0 prevents onestatus from applying some arbitrary layout style. Usefull when you want to fully customize your statusline.
 - `g:onestatus_config_path`: a path string
  It contains the default path where onestatus will look for a `onestatus.json`. You can override it if you want to use a custom path.
+- `g:onestatus_right_length`: the max length of your right status. Defaults to 50
+- `g:onestatus_left_length`: the max length of your left status. Defaults to 50
+
 
 ## For even more customization
 OneStatus also provides a helper to send more straightforward commands to tmux
