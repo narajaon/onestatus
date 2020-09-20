@@ -9,31 +9,21 @@ Much better !
 ![onestatus](https://user-images.githubusercontent.com/26607946/90639803-7f947f00-e22f-11ea-863e-e347f9379dfe.png)
 
 # Requirements
-If you just want to use the default template :
+If you just want to quickly use the plugin :
  - a font that supports powerline
  - https://github.com/tpope/vim-fugitive installed
+ - copy the `onestatus.json` example given below (this file must be present in your vim config directory)
 
 If you want to play with the API :
  - make sure to disable the default config by setting
  `let g:onestatus_default_layout = 0`
-  and you're done !
+ - create your own personal `onestatus.json`
+  Have fun !
 
 # Usage
-The plugin comes with a prebuilt statusline, as seen in the screenshot.<br>
-**You should however note that your current tmux setting may interfere with it.**
-
-to use the default template, put this in your config file
-```
-au BufEnter * :OneStatus
-set noshowmode noruler
-set laststatus = 0
-```
-you can of course not use `BufEnter` and use `WinEnter` or some other events but I found it sufficient for my use case.
-
-# Customization
-since v0.2.0 you can now very easily customize your statusline via a `onestatus.json` file that you put in your **config folder ($HOME for vim and $HOME/.config/nvim for nvim)**.
-If you want another path you can override `g:onestatus_config_path`
-here's an example of configuration file
+Since v0.2.0 you can very easily customize your statusline via a `onestatus.json` file that you put in your **config folder ($HOME for vim and $HOME/.config/nvim for nvim)**.<br>
+If you want another path you can override `g:onestatus_config_path`<br>
+Here's an example of configuration file that you can copy
 
 ```json
 {
@@ -58,11 +48,19 @@ here's an example of configuration file
 
 which will give your current git head and the name of the focused file just like shown in the screenshot
 
+Then you can use the full power of onestatus like in this example
+```
+au BufEnter * :OneStatus
+set noshowmode noruler
+set laststatus = 0
+```
+you can of course not use `BufEnter` and use `WinEnter` or some other events but I found it sufficient for my everyday use.
+
 ## The api
-you can notice that our json file has these types
+You must have noticed that the json file has these types of attributes
 - tmux option: an option that will be sent to tmux, you can learn more about them in `man tmux` 
 - tmux color: can be any color forma supported by tmux (ex: #ffd167)
-- onestatus' builtin function: they begin by `s:` like `s:getfilename`
+- onestatus' builtin function: they begin by `s:` like `s:getFileName`
 
 and has this form
 ```
@@ -87,12 +85,12 @@ Currently only `s:getDefaultColor` is supported.
 
 ## Available onestatus functions
 labelFunc:
-- s:getCWD
-- s:getFileName
-- s:getHead
+- `s:getCWD`
+- `s:getFileName`
+- `s:getHead`
 
 attributes:
-- s:getDefaultColor (it will make your statusline's background match with your vim's theme)
+- `s:getDefaultColor` (it will make your statusline's background match with your vim's theme)
 
 ## For even more customization
 OneStatus also provides a helper to send more straightforward commands to tmux
