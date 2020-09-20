@@ -2,8 +2,6 @@ if !exists(':OneStatus')
   if !exists('g:onestatus_default_layout')
     let g:onestatus_default_layout = 1
     command! OneStatus call s:setCurDir() | call onestatus#build(s:onestatusDefault())
-  else
-    finish
   endif
 endif
 
@@ -81,7 +79,7 @@ endfun
 let s:onestatusDefault= { -> s:getConfig(expand(g:onestatus_config_path) . '/onestatus.json') }
 
 " set default config
-if g:onestatus_default_layout
+if g:onestatus_default_layout == 1
   call onestatus#build([
         \{'command' : 'set-option status-justify centre'},
         \{'command': 'set-option status-right-length 30'},
