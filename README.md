@@ -83,7 +83,7 @@ In order to give a maximum amount of flexibility, attributes can either be an ar
 You can also use also use a onestatus function to dynamicaly generate your attributes.
 Currently only `s:getDefaultColor` is supported.
 
-## Available onestatus functions
+## Exposed functions
 labelFunc:
 - `s:getCWD`
 - `s:getFileName`
@@ -91,6 +91,12 @@ labelFunc:
 
 attributes:
 - `s:getDefaultColor` (it will make your statusline's background match with your vim's theme)
+
+## Exposed global variables
+- `g:onestatus_default_layout`: can be `0` or `1`. Defaults to `1`
+ Setting it to 0 prevents onestatus from applying some arbitrary layout style. Usefull when you want to fully customize your statusline.
+- `g:onestatus_config_path`: a path string
+ It contains the default path where onestatus will look for a `onestatus.json`. You can override it if you want to use a custom path.
 
 ## For even more customization
 OneStatus also provides a helper to send more straightforward commands to tmux
