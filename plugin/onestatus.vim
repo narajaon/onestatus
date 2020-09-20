@@ -10,11 +10,11 @@ if exists('g:loaded_onestatus')
 endif
 
 if !exists('g:onestatus_config_path')
+  let s:currentPath = expand('$HOME')
   if has('nvim')
-    let g:onestatus_config_path = expand('$HOME/.config/nvim')
-  else
-    let g:onestatus_config_path = expand('$HOME')
+    let s:currentPath = s:currentPath . '/.config/nvim'
   endif
+  let g:onestatus_config_path = s:currentPath . '/onestatus.json'
 endif
 
 let g:loaded_onestatus = 1
@@ -77,15 +77,13 @@ fun s:getConfig(path) abort
 endfun
 
 fun s:onestatusDefault()
-  let configPath = expand(g:onestatus_config_path) . '/onestatus.json'
+  let configPath = expand(g:onestatus_config_path)
   if !filereadable(configPath)
-    echo 'OneStatus: onestatus.json not found. Please Provide one at ' . configPath . ' or override g:onestatus_config_path'
+    echo 'OneStatus: onestatus.json not found. Please Provide one at ' . s:currentPath . ' or override g:onestatus_config_path'
     return []
   endif
   return s:getConfig(configPath) 
 endfun
-
-" let s:onestatusDefault= { -> s:getConfig(expand(g:onestatus_config_path) . '/onestatus.json') }
 
 " set default config
 if g:onestatus_default_layout == 1
