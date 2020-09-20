@@ -34,11 +34,20 @@ fun s:getFileName()
 endfun
 
 fun s:getHead()
-  let s:head = FugitiveHead()
-  if (s:head == "")
+  let s:headRef = { -> '' }
+  if exists('g:loaded_fugitive')
+    let s:headRef = funcref('FugitiveHead')
+  elseif exists('g:loaded_gitbranch')
+    let s:headRef = funcref('gitbranch#name')
+  else
+    echo 'OneStatus: please install vim-gitbranch or vim-fugitive to use s:getHead'
+    return ''
+  endif
+  let head = s:headRef()
+  if (head == "")
     return ""
   endif
-  return printf("  %s ", s:head)
+  return printf("  %s ", head)
 endfun
 
 fun s:getDefaultColor() abort
