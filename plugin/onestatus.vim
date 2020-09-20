@@ -17,6 +17,14 @@ if !exists('g:onestatus_config_path')
   let g:onestatus_config_path = s:currentPath . '/onestatus.json'
 endif
 
+if !exists('g:onestatus_right_length')
+  let g:onestatus_right_length = 50
+endif
+
+if !exists('g:onestatus_left_length')
+  let g:onestatus_left_length = 50
+endif
+
 let g:loaded_onestatus = 1
 let g:cwd_formated = ""
 
@@ -98,7 +106,7 @@ endfun
 if g:onestatus_default_layout == 1
   call onestatus#build([
         \{'command' : 'set-option status-justify centre'},
-        \{'command': 'set-option status-right-length 30'},
-        \{'command': 'set-option status-left-length 50'},
+        \{'command': 'set-option status-right-length ' . g:onestatus_right_length},
+        \{'command': 'set-option status-left-length ' . g:onestatus_left_length},
         \])
 endif
