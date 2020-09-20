@@ -11,7 +11,7 @@ Much better !
 # Requirements
 If you just want to quickly use the plugin :
  - a font that supports powerline
- - https://github.com/tpope/vim-fugitive installed
+ - https://github.com/tpope/vim-fugitive installed or you can use https://github.com/itchyny/vim-gitbranch.
  - copy the `onestatus.json` example given below (this file must be present in your vim config directory)
 
 If you want to play with the API :
