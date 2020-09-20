@@ -114,6 +114,7 @@ OneStatus also provides a helper to send more straightforward commands to tmux
 - Add more default templates
 - Improve default template theme integration
 - Add more builtin functions
+- Setup automated tests on develop branch
 
 # License
 Distributed under the same terms as Vim itself. See the vim license.
