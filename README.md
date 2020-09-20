@@ -10,7 +10,7 @@ Much better !
 
 # Requirements
 If you just want to quickly use the plugin :
- - a font that supports powerline
+ - a font that supports powerline to have those nice arrow separators
  - https://github.com/tpope/vim-fugitive or https://github.com/itchyny/vim-gitbranch installed to display your git head
  - copy the `onestatus.json` example given below (this file must be present in your vim config directory)
 
