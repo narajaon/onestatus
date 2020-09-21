@@ -80,8 +80,9 @@ In order to give a maximum amount of flexibility, attributes can either be an ar
 }
 ```
 
-You can also use also use a onestatus function to dynamicaly generate your attributes.
-Currently only `s:getDefaultColor` is supported.
+**NB1**: You can also use also use a onestatus function to dynamicaly generate your attributes.
+Currently only `s:getDefaultColor` is supported.<br>
+**NB2**: You can call any global function in labelFunc. Try putting directly the name of a function of your own !
 
 ## Exposed functions
 labelFunc:
