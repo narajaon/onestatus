@@ -57,7 +57,7 @@ set laststatus = 0
 you can of course not use `BufEnter` and use `WinEnter` or some other events but I found it sufficient for my everyday use.
 
 ## The Internals
-The plugin's implementation is simple, it just runs `tmux source {'your json here'}`, thats it everything else is just deserialization of your json and formatting it.
+The plugin's implementation is simple, it just runs `tmux source 'the content of your json file'`, everything else is just deserialization and formatting.
 
 Let us write an example with the current file type on the left.
 In your onestatus.json;
