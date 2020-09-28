@@ -46,7 +46,7 @@ Here's an example of configuration file that you can copy
 }
 ```
 
-which will give your current git head and the name of the focused file just like shown in the screenshot
+Which will give your current git head and the name of the focused file just like shown in the screenshot
 
 Then you can use the full power of onestatus like in this example
 ```
@@ -59,7 +59,7 @@ you can of course not use `BufEnter` and use `WinEnter` or some other events but
 ## The api
 You must have noticed that the json file has these types of attributes
 - tmux option: an option that will be sent to tmux, you can learn more about them in `man tmux` 
-- tmux color: can be any color forma supported by tmux (ex: #ffd167)
+- tmux color: can be any color format supported by tmux (ex: #ffd167)
 - onestatus' builtin function: they begin with `s:` like `s:getFileName`
 
 and has this form
@@ -80,7 +80,7 @@ In order to give a maximum amount of flexibility, attributes can either be an ar
 }
 ```
 
-**NB1**: You can also use also use a onestatus function to dynamicaly generate your attributes.
+**NB1**: You can also use also use a onestatus function to dynamically generate your attributes.
 Currently only `s:getDefaultColor` is supported.<br>
 **NB2**: You can call any global function in labelFunc. Try putting directly the name of a function of your own !
 
@@ -95,7 +95,7 @@ attributes:
 
 ## Exposed global variables
 - `g:onestatus_default_layout`: can be `0` or `1`. Defaults to `1`
- Setting it to 0 prevents onestatus from applying some arbitrary layout style. Usefull when you want to fully customize your statusline.
+ Setting it to 0 prevents onestatus from applying some arbitrary layout style. Useful when you want to fully customize your statusline.
 - `g:onestatus_config_path`: a path string
  It contains the default path where onestatus will look for a `onestatus.json`. You can override it if you want to use a custom path.
 - `g:onestatus_right_length`: the max length of your right status. Defaults to 50
