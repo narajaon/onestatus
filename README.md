@@ -59,7 +59,7 @@ you can of course not use `BufEnter` and use `WinEnter` or some other events but
 ## The Internals
 The plugin's implementation is simple, it just runs `tmux source {'your json here'}`, thats it everything else is just deserialization of your json and formatting it.
 
-Let us do an example with the current file type in left.
+Let us write an example with the current file type on the left.
 In your onestatus.json;
 ```json
   "status-left": [
