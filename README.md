@@ -50,9 +50,11 @@ which will give your current git head and the name of the focused file just like
 
 Then you can use the full power of onestatus like in this example
 ```
-au BufEnter * :OneStatus
-set noshowmode noruler
-set laststatus = 0
+if !empty($TMUX)
+    au BufEnter * :OneStatus
+    set noshowmode noruler
+    set laststatus=0
+endif
 ```
 you can of course not use `BufEnter` and use `WinEnter` or some other events but I found it sufficient for my everyday use.
 
@@ -100,7 +102,6 @@ attributes:
  It contains the default path where onestatus will look for a `onestatus.json`. You can override it if you want to use a custom path.
 - `g:onestatus_right_length`: the max length of your right status. Defaults to 50
 - `g:onestatus_left_length`: the max length of your left status. Defaults to 50
-
 
 ## For even more customization
 OneStatus also provides a helper to send more straightforward commands to tmux
