@@ -59,8 +59,27 @@ you can of course not use `BufEnter` and use `WinEnter` or some other events but
 ## The Internals
 The plugin's implementation is simple, it just runs `tmux source {'your json here'}`, thats it everything else is just deserialization of your json and formatting it.
 
+Let us do an example with the current file type in left.
+In your onestatus.json;
+```json
+  "status-left": [
+    { "fg": "default", "bg": "default", "labelFunc": "g:CurFileType" }
+  ]
+```
+And make a function in your `$MYVIMRC` to return the file type.
+```vim
+fun g:CurFileType()
+    return expand('%:e')
+endfun
+```
 
+The labelFunc takes a function name and sends its output to tmux
+```
+tmux set-option status-left -g fg=default bg=default "{the output of function}" 
+```
 
+There you customized your OneStatus.
+Read on to see the deatails
 ## The API
 You must have noticed that the json file has these types of attributes
 - tmux option: an option that will be sent to tmux, you can learn more about them in `man tmux` 
