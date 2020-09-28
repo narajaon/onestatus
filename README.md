@@ -73,7 +73,7 @@ fun g:CurFileType()
 endfun
 ```
 
-The labelFunc takes a function name and sends its output to tmux
+The labelFunc attribute takes a function name and sends its output to tmux
 ```
 tmux set-option status-left -g fg=default bg=default "{the output of function}" 
 ```
