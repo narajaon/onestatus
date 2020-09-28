@@ -56,7 +56,12 @@ set laststatus = 0
 ```
 you can of course not use `BufEnter` and use `WinEnter` or some other events but I found it sufficient for my everyday use.
 
-## The api
+## The Internals
+The plugin's implementation is simple, it just runs `tmux source {'your json here'}`, thats it everything else is just deserialization of your json and formatting it.
+
+
+
+## The API
 You must have noticed that the json file has these types of attributes
 - tmux option: an option that will be sent to tmux, you can learn more about them in `man tmux` 
 - tmux color: can be any color format supported by tmux (ex: #ffd167)
