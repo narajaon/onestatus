@@ -63,7 +63,7 @@ Let us write an example that displays the current file extension on the left.
 In your onestatus.json
 ```json
   "status-left": [
-    { "fg": "default", "bg": "default", "labelFunc": "CurFileType" }
+    { "fg": "default", "bg": "default", "labelFunc": "CurrentFileExtension" }
   ]
 ```
 And make a function in your `$MYVIMRC` to return the file type.
