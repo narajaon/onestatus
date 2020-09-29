@@ -60,7 +60,7 @@ you can of course not use `BufEnter` and use `WinEnter` or some other events but
 The plugin's implementation is simple, it runs `tmux source 'the content of your json file'`, everything else is just deserialization and formatting.
 
 Let us write an example that displays the current file extension on the left.
-In your onestatus.json;
+In your onestatus.json
 ```json
   "status-left": [
     { "fg": "default", "bg": "default", "labelFunc": "g:CurFileType" }
