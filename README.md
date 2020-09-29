@@ -68,7 +68,7 @@ In your onestatus.json
 ```
 And make a function in your `$MYVIMRC` to return the file type.
 ```vim
-fun CurFileType()
+fun CurrentFileExtension()
     return expand('%:e')
 endfun
 ```
