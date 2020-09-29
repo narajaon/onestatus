@@ -78,8 +78,6 @@ The labelFunc attribute takes a function name and sends its output to tmux
 tmux set-option status-left -g fg=default bg=default "{the output of function}" 
 ```
 
-There you customized your OneStatus.
-Read on to see the deatails
 ## The API
 You must have noticed that the json file has these types of attributes
 - tmux option: an option that will be sent to tmux, you can learn more about them in `man tmux` 
