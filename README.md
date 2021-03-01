@@ -52,11 +52,13 @@ Then you can use the full power of onestatus like in this example
 ```
 if !empty($TMUX)
     au BufEnter * :OneStatus
+    au VimLeave * :OneStatusClean
     set noshowmode noruler
     set laststatus=0
 endif
 ```
-you can of course not use `BufEnter` and use `WinEnter` or some other events but I found it sufficient for my everyday use.
+For `OneStatus` you can use `BufEnter` and use `WinEnter` or some other events but I found it sufficient for my everyday use.
+`OneStatusClean` on the other end is optional and is a convinient way to clean your tmux status bar when you exit your current vim process.
 
 ## The Internals
 The plugin's implementation is simple, it runs `tmux source 'the content of your json file'`, everything else is just deserialization and formatting.
