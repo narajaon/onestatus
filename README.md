@@ -51,7 +51,7 @@ Which will give your current git head and the name of the focused file just like
 Then you can use the full power of onestatus like in this example
 ```
 if !empty($TMUX)
-    au BufEnter * :OneStatus
+    au BufEnter,BufLeave,FocusGained * :OneStatus
     au VimLeave * :OneStatusClean
     set noshowmode noruler
     set laststatus=0
