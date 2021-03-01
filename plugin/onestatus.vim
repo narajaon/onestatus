@@ -3,6 +3,7 @@ if !exists(':OneStatus')
     let g:onestatus_default_layout = 1
     command! OneStatus call s:setCurDir() | call onestatus#build(s:onestatusDefault())
   endif
+  command! OneStatusClean call s:cleanUp() | call onestatus#build(s:onestatusDefault())
 endif
 
 if exists('g:loaded_onestatus')
@@ -27,21 +28,38 @@ endif
 
 let g:loaded_onestatus = 1
 let g:cwd_formated = ""
+let g:isVimLeaving = v:false
 
 function s:setCurDir()
   let cwd = getcwd()
   let g:cwd_formated = printf(' ~/%s ', get(split(cwd, '/')[-1:], 0, 'root'))
 endfun
 
+fun s:cleanUp()
+  let g:isVimLeaving = v:true
+endfun
+
 fun s:getCWD()
+  if g:isVimLeaving
+    return ''
+  endif
+
   return g:cwd_formated
 endfun
 
 fun s:getFileName()
+  if g:isVimLeaving
+    return ''
+  endif
+
   return &filetype != '' ? printf(' %s ', expand("%:t")) : ''
 endfun
 
 fun s:getHead()
+  if g:isVimLeaving
+    return ''
+  endif
+
   let s:headRef = { -> '' }
   if exists('g:loaded_fugitive')
     let s:headRef = funcref('FugitiveHead')
