@@ -1,4 +1,4 @@
-*Disclaimer*: this is still a very early stage project, feel free to submit a PR if you want to contribute
+*Disclaimer*: This pluggin as been tested with neovim so vim support is not garanted. Feel free to open a PR if you want to contribute !
 
 # Motivation
 OneStatus is an interface helps you interact with your tmux.<br>
