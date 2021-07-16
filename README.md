@@ -1,7 +1,7 @@
-*Disclaimer*: This pluggin as been tested with neovim so vim support is not garanted. Feel free to open a PR if you want to contribute !
+*Disclaimer*: This plugin has been tested with neovim so vim support is not garanteed. Feel free to open a PR if you want to contribute !
 
 # Motivation
-OneStatus is an interface helps you interact with your tmux.<br>
+OneStatus is an interface that helps you interact with your tmux.<br>
 One of my goal with it was to get rid of vim's redundant statusline and instead use tmux's.
 
 Much better !
