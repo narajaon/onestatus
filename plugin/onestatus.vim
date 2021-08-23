@@ -79,7 +79,7 @@ endfun
 fun s:getDefaultColor() abort
   let s:fg = synIDattr(synIDtrans(hlID('Normal')), 'fg#')
   let s:bg = synIDattr(synIDtrans(hlID('Normal')), 'bg#')
-  let s:attrs = {'isStyleOnly': v:true, 'fg': s:fg, 'bg': s:bg}
+  let s:attrs = {'isStyleOnly': v:true, 'fg': s:fg, 'bg': (len(s:bg) == 0 ? 'default' : s:bg)}
   return [s:attrs]
 endfun
 
